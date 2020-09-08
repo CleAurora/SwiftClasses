@@ -76,8 +76,8 @@ class Funcionario: Pessoa{
     var cargo: String
     var salario: Float
     
-    init(pessoa: Pessoa, cargo: String, salario: Float) {
-        self.cargo = cargo
+    init(pessoa: Pessoa, Cargo: String, salario: Float) {
+        self.cargo = Cargo
         self.salario = salario
         super.init(nome: pessoa.nome, cpf: pessoa.cpf, dataNascimento: pessoa.dataNascimento, endereco: pessoa.endereco, telefone: pessoa.telefone, email: pessoa.email)
     }
@@ -142,7 +142,7 @@ class Cliente:Pessoa{
         print("Chegou ao supermercado")
     }
     
-    func pegarUmCarrinho{
+    func pegarUmCarrinho(){
         print("Está com o carrinho")
     }
     
@@ -183,7 +183,23 @@ class Produto{
     func destacar(){
         print("Exposto no corredor principal")
     }
-    
-    
-    
 }
+
+
+extension Date {
+    init(year: Int, month: Int, day: Int) {
+        let formatter : DateFormatter = DateFormatter()
+        formatter.dateFormat = "yyyy/MM/dd"
+        
+        self = formatter.date(from: "\(year)/\(month)/\(day)") ?? Date()
+    }
+}
+
+let rafaelDataDeNascimento = Date(year: 1995, month: 10, day: 11)
+
+let rafael = Pessoa(nome: "Rafael Da Silva Ferreira", cpf: "12312312355", dataNascimento: rafaelDataDeNascimento, endereco: "Rua A 12", telefone: "999678345", email: "rafael@email.com")
+
+print (rafael.dataNascimento)
+
+let narleiDataDeNascimento = Date(year: 1993, month: 10, day: 14)
+let narlei = Funcionario(nome: "Narlei", cpf: "33355566699", dataNascimento: narleiDataDeNascimento, endereco: "Rua X 88", telefone: "999888777", email: "narlei@email.com", cargo: "Gerente", salario: 10000)
